@@ -1,103 +1,148 @@
+import BlueButton from "@/components/Common/BlueButton";
+import ProductCard from "@/components/Common/ProductCard";
+import TestimonialCard from "@/components/Common/TestimonialCard";
+import Title from "@/components/Common/Title";
+import SmilyMan from "@/public/images/home/SmilyMan.png";
 import Image from "next/image";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+	return (
+		<div className="flex flex-col py-4 gap-4">
+			<div className="flex flex-col gap-4 mx-4">
+				<p className="w-full relative text-4xl leading-none font-bold text-midnightblue text-left flex items-center">
+					FIND PRODUCTS YOU NEED EASILY AND SAFELY
+				</p>
+				<div className="w-full relative text-base leading- font-arial text-gray text-left inline-block">
+					Browse a wide range of quality products from registered
+					Ethiopian farmers and local shops, carefully selected to
+					meet your everyday needs.
+				</div>
+			</div>
+			<div className="mx-2">
+				<BlueButton text={"Shop Now"}/>
+			</div>
+			<div className="px-4 w-full relative flex items-center justify-between flex-wrap content-center gap-x-2 gap-y-8 text-left text-2xl text-midnightblue font-arial">
+				<div className="flex flex-col items-start">
+					<b className="relative">200+</b>
+					<div className="w-[130px] relative text-xs leading-[22px] text-gray inline-block mt-[-6px]">
+						Shops and farmers
+					</div>
+				</div>
+				<div className="relative border-gray-800 border-solid border-r-[1px] box-border h-[53px]" />
+				<div className="flex flex-col items-start">
+					<b className="relative mr-2">2,000+</b>
+					<div className="relative text-xs leading-[22px] text-gray mt-[-6px]">
+						High-Quality Products
+					</div>
+				</div>
+			</div>
+			<div className="mx-4 relative w-full flex flex-col items-center justify-center text-left text-2xl text-midnightblue font-arial">
+				<b className="relative">30,000+</b>
+				<div className="relative text-xs leading-[22px] text-gray mt-[-6px]">
+					Happy Customers
+				</div>
+			</div>
+			<div className="flex flex-col">
+				<Image
+					src={SmilyMan}
+					className="h-80 mb-0 m w-full relative max-w-full overflow-hidden max-h-full object-cover"
+					alt=""
+				/>
+				{/* {slogan} */}
+				<div className="w-full mt-0 relative bg-midnightblue h-[149px] text-[28px] uppercase text-white text-center flex items-center justify-center">
+					Quality You Can Trust, from Sellers You Know
+				</div>
+			</div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+			<Title text={"new products"} />
+			<div className="flex p-4 gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-thin scrollbar-thumb-gray-300">
+				<ProductCard
+					src="/images/home/pineapple.svg"
+					title="Fresh Pineapple"
+					price={120}
+					rating={4.5}
+				/>
+				<ProductCard
+					src="/images/home/iphone.svg"
+					title="IPhone 14 Pro Max"
+					price={120000}
+					rating={4.0}
+				/>
+				<ProductCard
+					src="/images/home/shirt.svg"
+					title="Checkered Shirt"
+					price={1000}
+					rating={5.0}
+				/>
+				<ProductCard
+					src="/images/home/wheat.jpg"
+					title="1KG wheat"
+					price={100}
+					rating={3.5}
+				/>
+			</div>
+			<div className="mx-2">
+				<BlueButton text={"View All"} />
+			</div>
+
+			<Title text={"FEATURED PRODUCTS"} />
+			<div className="flex p-4 gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-thin scrollbar-thumb-gray-300">
+				<ProductCard
+					src="/images/home/cabbage.svg"
+					title="Large Cabbage"
+					price={120}
+					rating={4.5}
+				/>
+				<ProductCard
+					src="/images/home/tshirt.svg"
+					title="One Life Graphic T-SHIRT"
+					price={120000}
+					rating={4.0}
+				/>
+				<ProductCard
+					src="/images/home/realme.svg"
+					title="Realme 15"
+					price={1000}
+					rating={5.0}
+				/>
+				<ProductCard
+					src="/images/home/tomato.svg"
+					title="Fresh Tomato 1KG"
+					price={100}
+					rating={3.5}
+				/>
+			</div>
+			<div className="mx-2 mb-3">
+				<BlueButton text={"See More"} />
+			</div>
+
+			<Title text={"OUR HAPPY CUSTOMERS"} />
+			<div className="flex p-4 gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-thin scrollbar-thumb-gray-300">
+				<TestimonialCard
+					author={"Belete M."}
+					testimony={
+						"EtCom saved me so much time. The app is simple, fast, and I always find what I need."
+					}
+				/>
+				<TestimonialCard
+					author={"Kaleab D."}
+					testimony={
+						"Finally, an Ethiopian platform that connects us directly with shops and farmers. I feel proud to support local businesses"
+					}
+				/>
+				<TestimonialCard
+					author={"Robel G."}
+					testimony={
+						"I love how trustworthy the sellers are. Everything I ordered arrived on time and in perfect condition."
+					}
+				/>
+				<TestimonialCard
+					author={"Habib E."}
+					testimony={
+						"EtCom made shopping so easy! I can now order fresh products from local farmers without leaving home. Truly a game-changer."
+					}
+				/>
+			</div>
+		</div>
+	);
 }

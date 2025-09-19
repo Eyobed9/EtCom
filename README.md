@@ -2,6 +2,20 @@
 
 EtCom is Ethiopia’s trusted e-commerce platform connecting registered farmers and local shops with customers across the country.
 
+## Features
+
+- Displaying paginated list of products 
+- Filtering products by category
+- API endpoints for products and categories
+- Expanded product details
+- Responsive design for mobile and desktop
+- Additional feature:
+    * Add to cart functionality
+    * User authentication and profile management
+    * Order history and tracking
+
+
+
 ## Getting Started
 
 First, run the development server:
