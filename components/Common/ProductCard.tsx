@@ -19,9 +19,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
 				/>
 			</div>
 			<div className="flex flex-col gap-1">
-				<h3 className="text-sm font-semibold">{title}</h3>
-				<p className="text-gray-600">{price.toFixed(2)} ETB</p>
-				<p className="text-yellow-500">{rating} ★</p>
+				<h3 className="text-sm font-semibold md:text-xl">{title}</h3>
+				<p className="text-gray-600 md:text-xl">{price.toFixed(2)} ETB</p>
+				<p className="text-yellow-500 md:text-xl">{rating} ★</p>
 			</div>
 		</div>
 	);

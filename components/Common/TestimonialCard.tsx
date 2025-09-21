@@ -7,7 +7,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 	testimony,
 }) => {
 	return (
-		<div className="w-[350px] max-w-[450px] rounded-[20px] snap-center shrink-0  border border-gray-300 box-border lg:h-[196px] overflow-hidden flex flex-col py-5 px-6 text-left text-xl text-black font-arial relative">
+		<div className="w-[350px] max-w-[450px] rounded-[20px] snap-center shrink-0  border border-gray-300 box-border overflow-hidden flex flex-col py-5 px-6  lg:py-7 lg:px-8 text-left text-xl text-black font-arial relative">
 			{/* Stars */}
 			<div className="flex items-center gap-1 mb-4">
 				{[...Array(stars)].map((_, idx) => (

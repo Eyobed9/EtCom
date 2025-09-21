@@ -7,6 +7,7 @@ import Cart from "@/public/icons/cart.svg";
 import Logo from "@/public/icons/blueCart.png";
 import Profile from "@/public/icons/profile.svg";
 import Search from "@/public/icons/search.svg";
+import Link from "next/link";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,11 +31,11 @@ const Header: React.FC = () => {
 
         {/* Desktop Nav (lg and up) */}
         <nav className="hidden lg:flex items-center gap-6 text-base text-midnightblue">
-          <div className="cursor-pointer hover:text-blue-500">Featured Products</div>
-          <div className="cursor-pointer hover:text-blue-500">Categories</div>
-          <div className="cursor-pointer hover:text-blue-500">Sell</div>
-          <div className="cursor-pointer hover:text-blue-500">About Us</div>
-          <div className="cursor-pointer hover:text-blue-500">Contact Us</div>
+          <Link href="/" className="cursor-pointer hover:text-blue-500">Home</Link>
+          <Link href="/categories" className="cursor-pointer hover:text-blue-500">Categories</Link>
+          <Link href="/" className="cursor-pointer hover:text-blue-500">Featured Products</Link>
+          <Link href="/" className="cursor-pointer hover:text-blue-500">About Us</Link>
+          <Link href="/" className="cursor-pointer hover:text-blue-500">Contact Us</Link>
         </nav>
 
         {/* Search Bar (desktop only) */}
@@ -58,11 +59,11 @@ const Header: React.FC = () => {
       {/* Mobile Nav (Dropdown, visible < lg) */}
       {isOpen && (
         <div className="flex flex-col space-y-4 px-6 pb-4 lg:hidden text-midnightblue">
-          <div className="cursor-pointer hover:text-blue-500">Featured Products</div>
-          <div className="cursor-pointer hover:text-blue-500">Categories</div>
-          <div className="cursor-pointer hover:text-blue-500">Sell</div>
-          <div className="cursor-pointer hover:text-blue-500">About Us</div>
-          <div className="cursor-pointer hover:text-blue-500">Contact Us</div>
+          <Link href="/" className="cursor-pointer hover:text-blue-500">Home</Link>
+          <Link href="categories" className="cursor-pointer hover:text-blue-500">Categories</Link>
+          <Link href="/" className="cursor-pointer hover:text-blue-500">Featured Products</Link>
+          <Link href="/" className="cursor-pointer hover:text-blue-500">About Us</Link>
+          <Link href="/" className="cursor-pointer hover:text-blue-500">Contact Us</Link>
 
           {/* Mobile Search */}
           <div className="flex items-center gap-3 rounded-full bg-whitesmoke px-4 py-2 text-gray">

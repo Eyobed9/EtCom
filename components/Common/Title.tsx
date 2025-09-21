@@ -2,7 +2,7 @@ import { TitleProps } from "@/interfaces";
 
 const Title: React.FC<TitleProps> = ({ text }) => {
 	return (
-		<p className="mx-auto mt-10 w-full relative text-[32px] uppercase font-semibold text-midnightblue text-center inline-block">
+		<p className="mx-auto mt-10 lg:mb-15 w-full relative text-[32px] lg:text-4xl uppercase font-semibold text-midnightblue text-center inline-block">
 			{text}
 		</p>
 	);
