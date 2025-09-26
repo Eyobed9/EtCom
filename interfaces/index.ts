@@ -30,13 +30,15 @@ export interface Category {
 
 // Interface for Product fetching
 export interface Product {
-	id: number;
-	title: string;
-	price: number;
-	description: string;
-	images: string[];
-	category?: Category;
+  id: string | number; // Fake Store returns numeric IDs
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image?: string;      // single image from Fake Store
+  images?: string[];   // optional array for farmProducts
 }
+
 
 export interface Params {
 	params: { categoryId: string };

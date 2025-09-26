@@ -1,42 +1,62 @@
-import { Product, Params } from "@/interfaces";
+import { farmProducts } from "@/data/farmdata";
+import { Product } from "@/interfaces";
+import { NextResponse } from "next/server";
 
-export async function GET(request: Request, { params }: Params) {
-	try {
-		const { searchParams } = new URL(request.url);
-		const offset = Number(searchParams.get("offset")) || 0;
-		const limit = Number(searchParams.get("limit")) || 10;
+export async function GET(
+  request: Request,
+  { params }: { params: { categoryId: string } }
+) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const offset = Number(searchParams.get("offset")) || 0;
+    const limit = Number(searchParams.get("limit")) || 10;
 
-		// Call the external Fake Store API
-		const res = await fetch(
-			`https://api.escuelajs.co/api/v1/categories/${params.categoryId}/products?offset=${offset}&limit=${limit}`,
-			{ cache: "no-store" } // optional: ensures fresh data each time
-		);
+    let data: Product[] = [];
 
-		// If the external API fails (404, 500, etc.)
-		if (!res.ok) {
-			return Response.json(
-				{ error: `Failed to fetch products for category ${params.categoryId}` },
-				{ status: res.status }
-			);
-		}
+    if (params.categoryId === "clothes") {
+      // Merge men + women clothes from Fake Store
+      const menRes = await fetch("https://fakestoreapi.com/products/category/men's clothing");
+      const men = await menRes.json();
 
-		const data: Product[] = await res.json();
+      const womenRes = await fetch("https://fakestoreapi.com/products/category/women's clothing");
+      const women = await womenRes.json();
 
-		// If API returned an empty array
-		if (!data || data.length === 0) {
-			return Response.json(
-				{ message: "No products found in this category" },
-				{ status: 404 }
-			);
-		}
+      data = [...men, ...women].map((item: Product, idx: number) => ({
+        id: `clothes-${idx + 1}`,
+        title: item.title,
+        price: item.price,
+        description: item.description,
+        category: "clothes",
+        images: [item.image],
+      }));
+    } else if (params.categoryId === "electronics") {
+      const res = await fetch("https://fakestoreapi.com/products/category/electronics");
+      const electronics = await res.json();
 
-		// Success
-		return Response.json(data, { status: 200 });
-	} catch (error) {
-		console.error("API Error:", error);
-		return Response.json(
-			{ error: "Internal Server Error. Please try again later." },
-			{ status: 500 }
-		);
-	}
+      data = electronics.map((item: Product, idx: number) => ({
+        id: `electronics-${idx + 1}`,
+        title: item.title,
+        price: item.price,
+        description: item.description,
+        category: "electronics",
+        images: [item.image],
+      }));
+    } else if (params.categoryId === "farm-products") {
+      data = farmProducts;
+    } else {
+      return NextResponse.json({ error: "Category not found" }, { status: 404 });
+    }
+
+    // Pagination
+    const paginated = data.slice(offset, offset + limit);
+
+    if (paginated.length === 0) {
+      return NextResponse.json({ message: "No products found" }, { status: 404 });
+    }
+
+    return NextResponse.json(paginated, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
 }
