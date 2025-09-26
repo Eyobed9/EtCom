@@ -20,7 +20,7 @@ export default function Home() {
 							carefully selected to meet your everyday needs.
 						</div>
 					</div>
-					<div className="mx-2">
+					<div className="mx-2 animate-bounce">
 						<BlueButton text={"Shop Now"} />
 					</div>
 

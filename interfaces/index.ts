@@ -23,7 +23,7 @@ export interface TestimonialCardProps {
 
 // Interface for Category fetching
 export interface Category {
-	id: number;
+	id: string;
 	name: string;
 	image: string;
 }
