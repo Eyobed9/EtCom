@@ -12,7 +12,7 @@ export async function GET() {
     categories.push({
       id: "electronics",
       name: "Electronics",
-      image: "https://img.icons8.com/fluency/96/iphone14-pro.png",
+      image: "/images/categories/iphone.svg",
     });
   }
 
@@ -21,7 +21,7 @@ export async function GET() {
     categories.push({
       id: "clothes",
       name: "Clothes",
-      image: "https://img.icons8.com/fluency/96/t-shirt.png",
+      image: "/images/categories/tshirt.svg",
     });
   }
 
@@ -29,7 +29,7 @@ export async function GET() {
   categories.push({
     id: "farm-products",
     name: "Farm Products",
-    image: "https://img.icons8.com/fluency/96/cabbage.png",
+    image: "/images/categories/cabbage.svg",
   });
 
   return NextResponse.json(categories);

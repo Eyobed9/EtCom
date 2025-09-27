@@ -27,8 +27,9 @@ export async function GET(
         price: item.price,
         description: item.description,
         category: "clothes",
-        images: [item.image],
+        images: [item.image].filter((img): img is string => typeof img === "string"),
       }));
+      
     } else if (params.categoryId === "electronics") {
       const res = await fetch("https://fakestoreapi.com/products/category/electronics");
       const electronics = await res.json();

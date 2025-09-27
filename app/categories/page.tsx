@@ -7,13 +7,14 @@ import { Category, Product } from "@/interfaces";
 export default function CategoriesProductsPage() {
 	const [categories, setCategories] = useState<Category[]>([]);
 	const [products, setProducts] = useState<Product[]>([]);
-	const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+	const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+	const [showCategories, setShowCategories] = useState(true);
 	const [page, setPage] = useState(0);
 	const [loading, setLoading] = useState(false);
 	const [isMobile, setIsMobile] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 
-	const limit = isMobile ? 6 : 10;
+	const limit = 6;
 
 	// Detect mobile
 	useEffect(() => {
@@ -24,23 +25,35 @@ export default function CategoriesProductsPage() {
 	}, []);
 
 	// Fetch categories
-
 	useEffect(() => {
-		setCategories([
-			{ id: 1, name: "Clothes", image: "/images/categories/tshirt.svg" },
-			{ id: 2, name: "Electronics", image: "/images/categories/iphone.svg" },
-			{ id: 3, name: "Farm Products", image: "/images/categories/cabbage.svg" },
-		]);
+		const fetchCategories = async () => {
+			try {
+				const res = await fetch("/api/categories");
+				const data: Category[] = await res.json();
+				setCategories(data);
+			} catch (err) {
+				console.error(err);
+				setError("Failed to load categories");
+			}
+		};
+		fetchCategories();
 	}, []);
 
-	// Fetch products with error handling
-	const fetchProducts = async (categoryId: number, pageNumber: number, append = false) => {
+	// Handle category click
+	const handleCategoryClick = (catId: string) => {
+		setSelectedCategory(catId);
+		setShowCategories(false);
+		setPage(0); // reset to first page
+		fetchProducts(catId, 0, false);
+	};
+
+	// Fetch products
+	const fetchProducts = async (categoryId: string, pageNumber: number, append = false) => {
 		try {
 			setLoading(true);
 			const res = await fetch(
 				`/api/products/${categoryId}?offset=${pageNumber * limit}&limit=${limit}`
 			);
-			
 
 			if (!res.ok) {
 				const data = await res.json();
@@ -52,7 +65,6 @@ export default function CategoriesProductsPage() {
 			const data: Product[] = await res.json();
 			setProducts((prev) => (append ? [...prev, ...data] : data));
 			setError(null);
-			console.log(products);
 		} catch (err) {
 			console.error(err);
 			setError("Something went wrong. Please try again later.");
@@ -62,19 +74,12 @@ export default function CategoriesProductsPage() {
 		}
 	};
 
-	// Reload products when category changes
+	// ✅ Automatically refetch when page changes (for desktop)
 	useEffect(() => {
-		if (!selectedCategory) return;
-		setPage(0);
-		fetchProducts(selectedCategory, 0, false);
-	}, [selectedCategory, isMobile]);
-
-	// Desktop pagination
-	const handlePageChange = (newPage: number) => {
-		if (!selectedCategory) return;
-		setPage(newPage);
-		fetchProducts(selectedCategory, newPage, false);
-	};
+		if (selectedCategory && !isMobile) {
+			fetchProducts(selectedCategory, page, false);
+		}
+	}, [page, selectedCategory, isMobile]);
 
 	// Mobile infinite scroll
 	useEffect(() => {
@@ -82,8 +87,7 @@ export default function CategoriesProductsPage() {
 
 		const handleScroll = () => {
 			if (
-				window.innerHeight + window.scrollY >=
-					document.body.offsetHeight - 200 &&
+				window.innerHeight + window.scrollY >= document.body.offsetHeight - 200 &&
 				!loading
 			) {
 				const nextPage = page + 1;
@@ -99,25 +103,19 @@ export default function CategoriesProductsPage() {
 	return (
 		<div className="relative w-full">
 			{/* Categories Overlay for Mobile */}
-			{isMobile && (
+			{isMobile && showCategories && (
 				<div className="fixed inset-0 bg-white z-50 overflow-y-auto p-4">
 					<h2 className="text-2xl font-semibold text-midnightblue w-full text-center mb-4">
 						Categories
 					</h2>
-
 					<div className="grid grid-cols-1 gap-4">
 						{categories.map((cat) => (
 							<div
 								key={cat.id}
-								onClick={() => setSelectedCategory(cat.id)}
-								className="w-full hover:shadow-lg hover:transform hover:transition-transform duration-300 hover:scale-105 relative h-60 rounded-2xl overflow-hidden cursor-pointer flex items-center justify-center"
+								onClick={() => handleCategoryClick(cat.id)}
+								className="w-full hover:shadow-lg hover:scale-105 transition-transform duration-300 relative h-60 rounded-2xl overflow-hidden cursor-pointer flex items-center justify-center"
 							>
-								<Image
-									src={cat.image}
-									alt={cat.name}
-									fill
-									className="object-cover opacity-80"
-								/>
+								<Image src={cat.image} alt={cat.name} fill className="object-cover opacity-80" />
 								<span className="absolute text-black font-bold text-xl bg-white/50 px-2 py-1 rounded">
 									{cat.name}
 								</span>
@@ -128,20 +126,15 @@ export default function CategoriesProductsPage() {
 			)}
 
 			{/* Categories / Desktop */}
-			{!isMobile && (
+			{!isMobile && showCategories && (
 				<div className="w-full grid grid-cols-3 p-4 place-items-center">
 					{categories.map((cat) => (
 						<div
 							key={cat.id}
-							onClick={() => setSelectedCategory(cat.id)}
-							className="hover:shadow-lg hover:transform hover:transition-transform duration-300 hover:scale-105 relative h-[400px] w-[400px] rounded-2xl overflow-hidden cursor-pointer flex flex-col items-center justify-center"
+							onClick={() => handleCategoryClick(cat.id)}
+							className="hover:shadow-lg hover:scale-105 transition-transform duration-300 relative h-[400px] w-[400px] rounded-2xl overflow-hidden cursor-pointer flex flex-col items-center justify-center"
 						>
-							<Image
-								src={cat.image}
-								alt={cat.name}
-								fill
-								className="object-cover opacity-80"
-							/>
+							<Image src={cat.image} alt={cat.name} fill className="object-cover opacity-80" />
 							<p className="absolute text-black bg-white/50 font-bold text-lg px-2 py-1 rounded">
 								{cat.name}
 							</p>
@@ -150,35 +143,56 @@ export default function CategoriesProductsPage() {
 				</div>
 			)}
 
+			{/* Back to Categories */}
+			{!showCategories && (
+				<div className="flex justify-center my-4">
+					<button
+						onClick={() => {
+							setShowCategories(true);
+							setProducts([]);
+							setSelectedCategory(null);
+							setError(null);
+							setPage(0);
+						}}
+						className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+					>
+						Back to Categories
+					</button>
+				</div>
+			)}
+
 			{/* Products */}
 			<div className="p-4">
 				{error && <p className="text-red-500 text-center mt-4">{error}</p>}
 
 				{products.length > 0 && (
-					<ul
-						className={`grid gap-4 ${
+					<div
+						className={`grid gap-4 place-items-center ${
 							isMobile ? "grid-cols-1" : "grid-cols-2 md:grid-cols-3"
 						} mt-4`}
 					>
 						{products.map((prod) => (
-							<li
-								key={prod.id}
-								className="border border-gray-200 p-4 rounded-xl flex flex-col items-center"
-							>
-								{prod.images?.[0] && (
+							<div key={prod.id} className="flex flex-col gap-2 w-[198px] md:w-[295px]">
+								<div className="w-[198px] h-[198px] md:w-[295px] md:h-[295px] relative">
 									<Image
-										src={prod.images[0]}
+										src={prod.images?.[0] || prod.image!}
 										alt={prod.title}
-										width={150}
-										height={150}
-										className="rounded-xl object-cover"
+										fill
+										sizes="100vw"
+										className="rounded-[20px] object-contain bg-gray-100 p-3"
 									/>
-								)}
-								<h3 className="mt-2 font-semibold text-center">{prod.title}</h3>
-								<p className="text-center font-bold">${prod.price}</p>
-							</li>
+								</div>
+
+								<div className="flex flex-col gap-1 text-center">
+									<h3 className="text-sm font-semibold md:text-xl line-clamp-2">{prod.title}</h3>
+									<p className="text-gray-600 md:text-xl">
+										{prod.price?.toFixed ? prod.price.toFixed(2) : prod.price} ETB
+									</p>
+									<p className="text-yellow-500 md:text-xl">4.5 ★</p>
+								</div>
+							</div>
 						))}
-					</ul>
+					</div>
 				)}
 
 				{/* Desktop Pagination */}
@@ -186,7 +200,7 @@ export default function CategoriesProductsPage() {
 					<div className="flex justify-center items-center gap-4 mt-4">
 						<button
 							disabled={page === 0}
-							onClick={() => handlePageChange(page - 1)}
+							onClick={() => setPage(page - 1)}
 							className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
 						>
 							Prev
@@ -195,7 +209,7 @@ export default function CategoriesProductsPage() {
 							Page <strong>{page + 1}</strong>
 						</span>
 						<button
-							onClick={() => handlePageChange(page + 1)}
+							onClick={() => setPage(page + 1)}
 							className="px-4 py-2 bg-gray-200 rounded"
 						>
 							Next
@@ -203,7 +217,13 @@ export default function CategoriesProductsPage() {
 					</div>
 				)}
 
-				{loading && <p className="text-center mt-4">Loading...</p>}
+				{/* Loading Spinner */}
+				{loading && (
+					<div className="flex justify-center items-center mt-6">
+						<div className="w-6 h-6 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mr-2"></div>
+						<p className="text-center text-gray-700 font-medium">Loading...</p>
+					</div>
+				)}
 			</div>
 		</div>
 	);
