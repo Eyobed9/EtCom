@@ -52,7 +52,7 @@ export async function GET(
     const paginated = data.slice(offset, offset + limit);
 
     if (paginated.length === 0) {
-      return NextResponse.json({ message: "No products found" }, { status: 404 });
+      return NextResponse.json({ message: "No more products found" }, { status: 404 });
     }
 
     return NextResponse.json(paginated, { status: 200 });

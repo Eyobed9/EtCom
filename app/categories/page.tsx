@@ -87,7 +87,7 @@ export default function CategoriesProductsPage() {
 
 		const handleScroll = () => {
 			if (
-				window.innerHeight + window.scrollY >= document.body.offsetHeight - 200 &&
+				window.innerHeight + window.scrollY >= document.body.offsetHeight - 400 &&
 				!loading
 			) {
 				const nextPage = page + 1;
@@ -163,8 +163,6 @@ export default function CategoriesProductsPage() {
 
 			{/* Products */}
 			<div className="p-4">
-				{error && <p className="text-red-500 text-center mt-4">{error}</p>}
-
 				{products.length > 0 && (
 					<div
 						className={`grid gap-4 place-items-center ${
@@ -194,6 +192,7 @@ export default function CategoriesProductsPage() {
 						))}
 					</div>
 				)}
+				{error && <p className="text-red-800 text-center mt-4">{error}</p>}
 
 				{/* Desktop Pagination */}
 				{!isMobile && selectedCategory && (
@@ -201,7 +200,7 @@ export default function CategoriesProductsPage() {
 						<button
 							disabled={page === 0}
 							onClick={() => setPage(page - 1)}
-							className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50"
+							className="px-4 py-2 cursor-pointer bg-gray-200 rounded disabled:opacity-50"
 						>
 							Prev
 						</button>
@@ -210,7 +209,7 @@ export default function CategoriesProductsPage() {
 						</span>
 						<button
 							onClick={() => setPage(page + 1)}
-							className="px-4 py-2 bg-gray-200 rounded"
+							className="px-4 py-2 cursor-pointer bg-gray-200 rounded"
 						>
 							Next
 						</button>
