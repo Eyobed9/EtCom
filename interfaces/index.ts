@@ -37,6 +37,7 @@ export interface Product {
   category: string;
   image?: string;      // single image from Fake Store
   images?: string[];   // optional array for farmProducts
+rating?: { rate: number; count: number };
 }
 
 

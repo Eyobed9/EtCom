@@ -5,7 +5,6 @@
 ## 🌐 Live Demo
 
 - 🔗 [Frontend Demo]("Coming soon")
-- 🔗 [Backend API Docs]("Coming soon")
 
 ---
 
@@ -90,16 +89,17 @@ npm test
 
 ---
 
-## 🚀 Features
+## Features
 
-* 🔐 User Authentication (Planned)
-* 📦 API with CRUD operations
-* 📊 Dashboard for users/admins (Planned)
-* 📁 File uploads (Planned)
-* 📱 Mobile responsive
-* Paginated product listing
-* Category filtering
-* Add to cart (Planned)
+- Displaying paginated list of products 
+- Filtering products by category
+- API endpoints for products and categories
+- Expanded product details
+- Responsive design for mobile and desktop
+- Additional feature:
+    * Add to cart functionality
+    * User authentication and profile management
+    * Order history and tracking
 
 ---
 
@@ -205,7 +205,7 @@ EtCom enables core features essential to a marketplace platform.
 
 | Home Page                       | Categories Page                   |
 | ------------------------------- | --------------------------------- |
-| ![Home](./public/images/home/SmilyMan.png) | ![Categories](./public/images/categories/cabbage.svg) |
+| ![Home](./public/images/screenshots/home.jpg) | ![Categories](./public/images/screenshots/electronics.jpg) |
 
 ---
 

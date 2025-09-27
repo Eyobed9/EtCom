@@ -6,6 +6,7 @@ export const farmProducts = [
     description: "Premium Arabica coffee beans from Sidama, Ethiopia.",
     category: "farm-products",
     images: ["https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80"],
+    rating: { rate: 4.5, count: 235 },
   },
   {
     id: "farm-2",
@@ -13,7 +14,8 @@ export const farmProducts = [
     price: 80,
     description: "High-quality Ethiopian teff, perfect for injera.",
     category: "farm-products",
-    images: ["https://media.istockphoto.com/id/1130300640/photo/market.jpg?s=2048x2048&w=is&k=20&c=NB6fdg2ZoRmzSZlXie808xv7U2jFpZtAR7tPOoA9LDc="],
+    images: ["https://images.unsplash.com/photo-1756036022884-0c87d038adba?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
+    rating: { rate: 4.2, count: 180 },
   },
   {
     id: "farm-3",
@@ -21,7 +23,8 @@ export const farmProducts = [
     price: 50,
     description: "Traditional Ethiopian injera flatbread.",
     category: "farm-products",
-    images: ["https://images.unsplash.com/photo-1629891684933-6b2a9e0e5e7f?auto=format&fit=crop&w=400&q=80"],
+    images: ["https://plus.unsplash.com/premium_photo-1695297516748-70b4932c06d7?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
+    rating: { rate: 4.0, count: 95 },
   },
   {
     id: "farm-4",
@@ -29,7 +32,8 @@ export const farmProducts = [
     price: 70,
     description: "Natural forest honey from Ethiopia.",
     category: "farm-products",
-    images: ["https://images.unsplash.com/photo-1589308078056-1c53f1218b9f?auto=format&fit=crop&w=400&q=80"],
+    images: ["https://images.unsplash.com/photo-1587049352851-8d4e89133924?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
+    rating: { rate: 4.7, count: 320 },
   },
   {
     id: "farm-5",
@@ -37,7 +41,8 @@ export const farmProducts = [
     price: 40,
     description: "Spiced chickpea powder for Ethiopian stews.",
     category: "farm-products",
-    images: ["https://images.unsplash.com/photo-1617196036660-3b103f76c5c6?auto=format&fit=crop&w=400&q=80"],
+    images: ["https://images.unsplash.com/photo-1693996046865-19217d179161?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
+    rating: { rate: 4.1, count: 150 },
   },
   {
     id: "farm-6",
@@ -45,7 +50,8 @@ export const farmProducts = [
     price: 45,
     description: "Ethiopian red lentils used for misir wot.",
     category: "farm-products",
-    images: ["https://images.unsplash.com/photo-1623282861500-645f540d6a6c?auto=format&fit=crop&w=400&q=80"],
+    images: ["https://images.unsplash.com/photo-1730591857303-0fa44be3f677?q=80&w=993&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
+    rating: { rate: 4.3, count: 210 },
   },
   {
     id: "farm-7",
@@ -53,7 +59,8 @@ export const farmProducts = [
     price: 60,
     description: "Authentic Ethiopian berbere spice blend.",
     category: "farm-products",
-    images: ["https://images.unsplash.com/photo-1617196036670-1f103f76c7c7?auto=format&fit=crop&w=400&q=80"],
+    images: ["https://images.unsplash.com/photo-1607672632458-9eb56696346b?q=80&w=1257&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
+    rating: { rate: 4.6, count: 290 },
   },
   {
     id: "farm-8",
@@ -61,7 +68,8 @@ export const farmProducts = [
     price: 200,
     description: "Fresh Ethiopian goat meat for traditional dishes.",
     category: "farm-products",
-    images: ["https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"],
+    images: ["https://images.unsplash.com/photo-1448907503123-67254d59ca4f?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
+    rating: { rate: 4.4, count: 175 },
   },
   {
     id: "farm-9",
@@ -69,7 +77,8 @@ export const farmProducts = [
     price: 30,
     description: "Locally grown cabbage for gomen dishes.",
     category: "farm-products",
-    images: ["https://images.unsplash.com/photo-1582515073490-3998136b3b55?auto=format&fit=crop&w=400&q=80"],
+    images: ["/images/categories/cabbage.svg"],
+    rating: { rate: 4.0, count: 90 },
   },
   {
     id: "farm-10",
@@ -77,6 +86,7 @@ export const farmProducts = [
     price: 35,
     description: "Juicy tomatoes from Ethiopian farms.",
     category: "farm-products",
-    images: ["https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=400&q=80"],
+    images: ["https://images.unsplash.com/photo-1524593166156-312f362cada0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
+    rating: { rate: 4.2, count: 110 },
   },
 ];
