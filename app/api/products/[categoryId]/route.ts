@@ -1,44 +1,45 @@
 import { farmProducts } from "@/data/farmdata";
 import { Product } from "@/interfaces";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
-  request: Request,
-  { params }: { params: { categoryId: string } }
+  request: NextRequest,
+  context: { params: Promise<{ categoryId: string }> } // params is a Promise
 ) {
   try {
+    const { categoryId } = await context.params; // await before destructuring
     const { searchParams } = new URL(request.url);
     const offset = Number(searchParams.get("offset")) || 0;
     const limit = Number(searchParams.get("limit")) || 10;
 
     let data: Product[] = [];
 
-    if (params.categoryId === "clothes") {
+    if (categoryId === "clothes") {
       const menRes = await fetch("https://fakestoreapi.com/products/category/men's clothing");
       const men = await menRes.json();
       const womenRes = await fetch("https://fakestoreapi.com/products/category/women's clothing");
       const women = await womenRes.json();
       data = [...men, ...women].map((item: Product) => ({
-		...item,                    
-		category: "clothes",
-		images: item.image ? [item.image] : [],  // ensures string[]
-	}));
-
-    } else if (params.categoryId === "electronics") {
+        ...item,
+        category: "clothes",
+        images: item.image ? [item.image] : [], // ensures string[]
+      }));
+    } else if (categoryId === "electronics") {
       const res = await fetch("https://fakestoreapi.com/products/category/electronics");
       const electronics = await res.json();
       data = electronics.map((item: Product) => ({
-        ...item,               // Keep numeric ID
+        ...item,
         category: "electronics",
-        images: [item.image],
+        images: item.image ? [item.image] : [],
       }));
-    } else if (params.categoryId === "farm-products") {
+    } else if (categoryId === "farm-products") {
       data = farmProducts.map((item): Product => ({
-        ...item,               // Farm products keep string IDs
+        ...item,
         rating:
           typeof item.rating === "number"
             ? { rate: item.rating, count: 0 }
             : item.rating,
+        images: item.images || [],
       }));
     } else {
       return NextResponse.json({ error: "Category not found" }, { status: 404 });
