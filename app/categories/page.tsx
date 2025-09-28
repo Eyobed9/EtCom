@@ -217,11 +217,11 @@ const handleProductClick = (prodId: string | number) => {
 
 				{/* Products */}
 				<div className="p-4">
-					<div className="flex items-center justify-around">
+					<div className="flex flex-col md:flex-row items-center justify-around">
 						<h2 className="text-2xl text-center lg:ml-20 uppercase font-semibold text-midnightblue mb-4">
 							{selectedCategory}
 						</h2>
-						{products.length > 0 && (<div className="flex w-50 gap-2"><p className="text-gray-500">Sort By: </p>
+						{products.length > 0 && (<div className="flex lg:w-50 gap-2"><span className="text-gray-500">Sort By: </span>
 						<select
 							value={sortOrder}
 							onChange={(e) => setSortOrder(e.target.value)}
