@@ -4,7 +4,8 @@
 
 ## 🌐 Live Demo
 
-- 🔗 [Frontend Demo]("Coming soon")
+- 🔗 [Frontend Demo](https://et-com-ruby.vercel.app/)
+- 🔗 [Demo Video]()
 
 ---
 
@@ -44,6 +45,7 @@ package-lock.json # Dependency lock file
 
 /app/api      # API routes (Next.js)
 (data, interfaces, etc.)
+- api source: fakestoreapi.com (for demo purposes)
 
 ---
 
@@ -109,95 +111,28 @@ EtCom enables core features essential to a marketplace platform.
 
 ---
 
-### 1. 👥 User Management
-- **User Registration/Login** (Planned)
-- **Profile Management** (Planned)
-
----
-
-### 2. 🏡 Product Listings Management
-- **Add Listings** (Planned)
-- **Edit/Delete Listings** (Planned)
-
----
-
-### 3. 🔍 Search and Filtering
+### 1. 🔍 Search and Filtering
 - Search by category
 - Pagination for large result sets
 
----
-
-### 4. 📦 Shopping Cart
-- Add to cart (Planned)
-- Checkout (Planned)
-
----
-
-### 5. 💳 Payment Integration
-- (Planned)
-
----
-
-### 6. 🌟 Reviews and Ratings
-- (Planned)
-
----
-
-### 7. 🔔 Notifications System
-- (Planned)
-
----
-
-### 8. 🛠️ Admin Dashboard
-- (Planned)
-
----
 
 ## 🧱 Technical Requirements
 
-### 9. 🗃️ Database Management
-- (Planned: PostgreSQL/MySQL)
 
----
-
-### 10. 🔌 API Development
+### 2. 🔌 API Development
 - RESTful APIs with proper HTTP methods and error responses
 
 ---
 
-### 11. 🔐 Authentication & Authorization
-- (Planned: JWT-based sessions, RBAC)
-
----
-
-### 12. 🖼️ File Storage
-- (Planned)
-
----
-
-### 13. 📨 Third-Party Services
-- (Planned)
-
----
-
-### 14. 🐞 Error Handling and Logging
+### 3. 🐞 Error Handling and Logging
 - API error handling
 
 ---
 
 ## 🚀 Non-Functional Requirements
 
-### 15. 📈 Scalability
+### 4. 📈 Scalability
 - Modular architecture
-
-### 16. 🔒 Security
-- Encrypted passwords (Planned)
-
-### 17. ⚡ Performance Optimization
-- Optimized DB queries (Planned)
-
-### 18. ✅ Testing
-- Unit & integration tests (Planned)
 
 ---
 
