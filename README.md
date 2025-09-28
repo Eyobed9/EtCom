@@ -5,7 +5,7 @@
 ## 🌐 Live Demo
 
 - 🔗 [Frontend Demo](https://et-com-ruby.vercel.app/)
-- 🔗 [Demo Video]()
+- 🔗 [Demo Video](https://youtu.be/W943firo0WI)
 
 ---
 
