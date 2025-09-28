@@ -7,6 +7,7 @@ export interface ProductCardProps {
 
 export interface BlueButtonProps {
 	text: string;
+	onClick?: () => void;
 }
 
 // Interface for home page titles

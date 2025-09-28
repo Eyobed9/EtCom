@@ -1,3 +1,6 @@
+"use client";
+
+
 import BlueButton from "@/components/Common/BlueButton";
 import ProductCard from "@/components/Common/ProductCard";
 import TestimonialCard from "@/components/Common/TestimonialCard";
@@ -5,7 +8,11 @@ import Title from "@/components/Common/Title";
 import SmilyMan from "@/public/images/home/SmilyMan.png";
 import Image from "next/image";
 
+import { useRouter } from "next/navigation";
+
 export default function Home() {
+	const router = useRouter();
+
 	return (
 		<div className="flex flex-col">
 			<div className="flex flex-col md:flex-row lg:px-35 lg:justify-between">
@@ -121,7 +128,7 @@ export default function Home() {
 				/>
 			</div>
 			<div className="mx-2 mb-3 lg:mx-auto">
-				<BlueButton text={"See More"} />
+				<BlueButton text={"See More"} onClick={() => router.push("/featured")} />
 			</div>
 
 			<Title text={"OUR HAPPY CUSTOMERS"} />

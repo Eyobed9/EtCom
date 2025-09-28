@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Menu, X } from "lucide-react"; // hamburger & close icons
 import Cart from "@/public/icons/cart.svg";
@@ -8,16 +9,25 @@ import Logo from "@/public/icons/blueCart.png";
 import Profile from "@/public/icons/profile.svg";
 import Search from "@/public/icons/search.svg";
 import Link from "next/link";
-import { FaGlobe } from "react-icons/fa";
 
 const Header: React.FC = () => {
 	const [isOpen, setIsOpen] = useState(false);
+	const pathname = usePathname();
 
-  
+	// Helper to check if link is active
+	const isActive = (path: string) => pathname === path;
+
+	const linkClass = (path: string) =>
+		`cursor-pointer transition-colors duration-200 ${
+			isActive(path)
+				? "font-bold underline-offset-4 text-blue-600"
+				: "hover:text-blue-500"
+		}`;
 
 	return (
 		<header className="w-full px-6">
 			<div className="flex items-center justify-around gap-1 lg:px-5 py-4">
+				{/* Logo and Menu */}
 				<div className="flex items-center gap-4">
 					<button
 						className="block lg:hidden"
@@ -33,48 +43,33 @@ const Header: React.FC = () => {
 						className="max-sm:hidden"
 						width={45}
 						height={45}
-						alt=""
+						alt="EtCom Logo"
 					/>
 					<div className="text-2xl font-bold text-midnightblue">
 						EtCom
 					</div>
 				</div>
 
-				{/* Desktop Nav (lg and up) */}
+				{/* Desktop Nav */}
 				<nav className="hidden lg:flex items-center gap-6 text-base text-midnightblue">
-					<Link
-						href="/"
-						className="cursor-pointer hover:text-blue-500"
-					>
+					<Link href="/" className={linkClass("/")}>
 						Home
 					</Link>
-					<Link
-						href="/categories"
-						className="cursor-pointer hover:text-blue-500"
-					>
+					<Link href="/categories" className={linkClass("/categories")}>
 						Categories
 					</Link>
-					<Link
-						href="/featured"
-						className="cursor-pointer hover:text-blue-500"
-					>
+					<Link href="/featured" className={linkClass("/featured")}>
 						Featured Products
 					</Link>
-					<Link
-						href="/about"
-						className="cursor-pointer hover:text-blue-500"
-					>
+					<Link href="/about" className={linkClass("/about")}>
 						About Us
 					</Link>
-					<Link
-						href="/contact"
-						className="cursor-pointer hover:text-blue-500"
-					>
+					<Link href="/contact" className={linkClass("/contact")}>
 						Contact Us
 					</Link>
 				</nav>
 
-				{/* Search Bar (desktop only) */}
+				{/* Search (Desktop) */}
 				<div className="hidden lg:flex flex-1 items-center gap-3 rounded-full bg-whitesmoke px-4 py-2 text-gray max-w-100">
 					<Image src={Search} width={20} height={20} alt="Search" />
 					<input
@@ -100,58 +95,32 @@ const Header: React.FC = () => {
 						alt="Profile"
 						className="cursor-pointer"
 					/>
-          <div>አማርኛ</div>
-          
-					{/* Google Translate Dropdown
-					<div
-						id="google_translate_element"
-						className="cursor-pointer animate-bounce"
-					></div> */}
+					<div>አማርኛ</div>
 				</div>
 			</div>
 
-			{/* Mobile Nav (Dropdown, visible < lg) */}
+			{/* Mobile Nav */}
 			{isOpen && (
 				<div className="flex flex-col space-y-4 px-6 pb-4 lg:hidden text-midnightblue">
-					<Link
-						href="/"
-						className="cursor-pointer hover:text-blue-500"
-					>
+					<Link href="/" className={linkClass("/")}>
 						Home
 					</Link>
-					<Link
-						href="/categories"
-						className="cursor-pointer hover:text-blue-500"
-					>
+					<Link href="/categories" className={linkClass("/categories")}>
 						Categories
 					</Link>
-					<Link
-						href="/featured"
-						className="cursor-pointer hover:text-blue-500"
-					>
+					<Link href="/featured" className={linkClass("/featured")}>
 						Featured Products
 					</Link>
-					<Link
-						href="/about"
-						className="cursor-pointer hover:text-blue-500"
-					>
+					<Link href="/about" className={linkClass("/about")}>
 						About Us
 					</Link>
-					<Link
-						href="/contact"
-						className="cursor-pointer hover:text-blue-500"
-					>
+					<Link href="/contact" className={linkClass("/contact")}>
 						Contact Us
 					</Link>
 
 					{/* Mobile Search */}
 					<div className="flex items-center gap-3 rounded-full bg-whitesmoke px-4 py-2 text-gray">
-						<Image
-							src={Search}
-							width={20}
-							height={20}
-							alt="Search"
-						/>
+						<Image src={Search} width={20} height={20} alt="Search" />
 						<input
 							type="text"
 							placeholder="Search for products..."

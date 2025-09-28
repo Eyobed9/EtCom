@@ -43,7 +43,7 @@ export default function ProductDetailsPage() {
     <div className="p-4 max-w-5xl mx-auto">
       <button
         onClick={() => router.back()}
-        className="px-4 py-2 mb-4 bg-gray-200 rounded hover:bg-gray-300"
+        className="cursor-pointer px-4 py-2 mb-4 bg-gray-200 rounded hover:bg-gray-300"
       >
         Back
       </button>
