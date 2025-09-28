@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -21,19 +22,30 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="eng">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
-        <Header/>
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer/>
+         {/* ✅ Google Translate Scripts
+        <Script
+          src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+          strategy="afterInteractive"
+        />
+        <Script id="google-translate-init" strategy="afterInteractive">
+          {`
+            function googleTranslateElementInit() {
+              new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'am,en'
+              }, 'google_translate_element');
+            }
+          `}
+        </Script> */}
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );

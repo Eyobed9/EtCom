@@ -8,76 +8,160 @@ import Logo from "@/public/icons/blueCart.png";
 import Profile from "@/public/icons/profile.svg";
 import Search from "@/public/icons/search.svg";
 import Link from "next/link";
+import { FaGlobe } from "react-icons/fa";
 
 const Header: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 
-  return (
-    <header className="w-full px-6">
-      <div className="flex items-center justify-around gap-1 lg:px-5 py-4">
-        <div className="flex items-center gap-4">
-          <button
-            className="block lg:hidden"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle Menu"
-          >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+  
 
-          {/* Logo */} 
-          <Image src={Logo} className="max-sm:hidden" width={45} height={45} alt=""/>
-          <div className="text-2xl font-bold text-midnightblue">EtCom</div>         
-        </div>
+	return (
+		<header className="w-full px-6">
+			<div className="flex items-center justify-around gap-1 lg:px-5 py-4">
+				<div className="flex items-center gap-4">
+					<button
+						className="block lg:hidden"
+						onClick={() => setIsOpen(!isOpen)}
+						aria-label="Toggle Menu"
+					>
+						{isOpen ? <X size={28} /> : <Menu size={28} />}
+					</button>
 
-        {/* Desktop Nav (lg and up) */}
-        <nav className="hidden lg:flex items-center gap-6 text-base text-midnightblue">
-          <Link href="/" className="cursor-pointer hover:text-blue-500">Home</Link>
-          <Link href="/categories" className="cursor-pointer hover:text-blue-500">Categories</Link>
-          <Link href="/" className="cursor-pointer hover:text-blue-500">Featured Products</Link>
-          <Link href="/" className="cursor-pointer hover:text-blue-500">About Us</Link>
-          <Link href="/" className="cursor-pointer hover:text-blue-500">Contact Us</Link>
-        </nav>
+					{/* Logo */}
+					<Image
+						src={Logo}
+						className="max-sm:hidden"
+						width={45}
+						height={45}
+						alt=""
+					/>
+					<div className="text-2xl font-bold text-midnightblue">
+						EtCom
+					</div>
+				</div>
 
-        {/* Search Bar (desktop only) */}
-        <div className="hidden lg:flex flex-1 items-center gap-3 rounded-full bg-whitesmoke px-4 py-2 text-gray max-w-100">
-          <Image src={Search} width={20} height={20} alt="Search" />
-          <input
-            type="text"
-            placeholder="Search for products..."
-            className="bg-transparent outline-none placeholder-gray-500 mx-0"
-          />
-        </div>
+				{/* Desktop Nav (lg and up) */}
+				<nav className="hidden lg:flex items-center gap-6 text-base text-midnightblue">
+					<Link
+						href="/"
+						className="cursor-pointer hover:text-blue-500"
+					>
+						Home
+					</Link>
+					<Link
+						href="/categories"
+						className="cursor-pointer hover:text-blue-500"
+					>
+						Categories
+					</Link>
+					<Link
+						href="/featured"
+						className="cursor-pointer hover:text-blue-500"
+					>
+						Featured Products
+					</Link>
+					<Link
+						href="/about"
+						className="cursor-pointer hover:text-blue-500"
+					>
+						About Us
+					</Link>
+					<Link
+						href="/contact"
+						className="cursor-pointer hover:text-blue-500"
+					>
+						Contact Us
+					</Link>
+				</nav>
 
-        {/* Icons + Language */}
-        <div className="flex items-center gap-4 font-power-geez-unicode1">
-          <Image src={Cart} width={24} height={24} alt="Cart" className="cursor-pointer" />
-          <Image src={Profile} width={24} height={24} alt="Profile" className="cursor-pointer" />
-          <div className="cursor-pointer hover:text-blue-500">አማርኛ</div>
-        </div>
-      </div>
+				{/* Search Bar (desktop only) */}
+				<div className="hidden lg:flex flex-1 items-center gap-3 rounded-full bg-whitesmoke px-4 py-2 text-gray max-w-100">
+					<Image src={Search} width={20} height={20} alt="Search" />
+					<input
+						type="text"
+						placeholder="Search for products..."
+						className="bg-transparent outline-none placeholder-gray-500 mx-0"
+					/>
+				</div>
 
-      {/* Mobile Nav (Dropdown, visible < lg) */}
-      {isOpen && (
-        <div className="flex flex-col space-y-4 px-6 pb-4 lg:hidden text-midnightblue">
-          <Link href="/" className="cursor-pointer hover:text-blue-500">Home</Link>
-          <Link href="categories" className="cursor-pointer hover:text-blue-500">Categories</Link>
-          <Link href="/" className="cursor-pointer hover:text-blue-500">Featured Products</Link>
-          <Link href="/" className="cursor-pointer hover:text-blue-500">About Us</Link>
-          <Link href="/" className="cursor-pointer hover:text-blue-500">Contact Us</Link>
+				{/* Icons + Language */}
+				<div className="flex items-center gap-4 font-power-geez-unicode1">
+					<Image
+						src={Cart}
+						width={24}
+						height={24}
+						alt="Cart"
+						className="cursor-pointer"
+					/>
+					<Image
+						src={Profile}
+						width={24}
+						height={24}
+						alt="Profile"
+						className="cursor-pointer"
+					/>
+          <div>አማርኛ</div>
+          
+					{/* Google Translate Dropdown
+					<div
+						id="google_translate_element"
+						className="cursor-pointer animate-bounce"
+					></div> */}
+				</div>
+			</div>
 
-          {/* Mobile Search */}
-          <div className="flex items-center gap-3 rounded-full bg-whitesmoke px-4 py-2 text-gray">
-            <Image src={Search} width={20} height={20} alt="Search" />
-            <input
-              type="text"
-              placeholder="Search for products..."
-              className="w-full bg-transparent outline-none placeholder-gray-500"
-            />
-          </div>
-        </div>
-      )}
-    </header>
-  );
+			{/* Mobile Nav (Dropdown, visible < lg) */}
+			{isOpen && (
+				<div className="flex flex-col space-y-4 px-6 pb-4 lg:hidden text-midnightblue">
+					<Link
+						href="/"
+						className="cursor-pointer hover:text-blue-500"
+					>
+						Home
+					</Link>
+					<Link
+						href="/categories"
+						className="cursor-pointer hover:text-blue-500"
+					>
+						Categories
+					</Link>
+					<Link
+						href="/featured"
+						className="cursor-pointer hover:text-blue-500"
+					>
+						Featured Products
+					</Link>
+					<Link
+						href="/about"
+						className="cursor-pointer hover:text-blue-500"
+					>
+						About Us
+					</Link>
+					<Link
+						href="/contact"
+						className="cursor-pointer hover:text-blue-500"
+					>
+						Contact Us
+					</Link>
+
+					{/* Mobile Search */}
+					<div className="flex items-center gap-3 rounded-full bg-whitesmoke px-4 py-2 text-gray">
+						<Image
+							src={Search}
+							width={20}
+							height={20}
+							alt="Search"
+						/>
+						<input
+							type="text"
+							placeholder="Search for products..."
+							className="w-full bg-transparent outline-none placeholder-gray-500"
+						/>
+					</div>
+				</div>
+			)}
+		</header>
+	);
 };
 
 export default Header;
